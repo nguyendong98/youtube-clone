@@ -3,13 +3,16 @@ import './_header.scss';
 import { FaBars } from 'react-icons/fa';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdNotifications, MdApps } from 'react-icons/md';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {useHistory} from 'react-router-dom';
+import {CgProfile} from 'react-icons/cg';
+import {login} from 'actions/auth.action';
 
 export default function Header({ toggleSidebar }) {
 
+    const dispatch = useDispatch()
     const { user } = useSelector(state => state.auth);
     const [query, setQuery] = useState('');
     const history = useHistory();
@@ -17,6 +20,10 @@ export default function Header({ toggleSidebar }) {
     const handleSubmit = e => {
         e.preventDefault();
         history.push(`/search/${query}`)
+    }
+
+    const handleLogin = () => {
+        dispatch(login());
     }
 
     return (
@@ -38,20 +45,20 @@ export default function Header({ toggleSidebar }) {
                 </button>
             </form>
 
-            <div className="header__icons">
-                <MdNotifications size={28} />
-                <MdApps size={28} />
+            <div className="header__icons d-flex">
+                <MdNotifications size={25} />
+                <MdApps size={25} className="ms-3"/>
                 {
                     user?.photoURL ? (
                         <LazyLoadImage
                             src={user.photoURL}
                             effect="blur"
-                            className="img-avatar"/>
+                            className="img-avatar ms-3"/>
                     ) : (
-                        <LazyLoadImage
-                            src="https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"
-                            effect="blur"
-                            className="img-avatar"/>
+                        <button className="btn flex-shrink-0 d-flex align-items-center ms-3" onClick={handleLogin} >
+                            <CgProfile size={25} />
+                            <span className="ms-2">ĐĂNG NHẬP</span>
+                        </button>
                     )
                 }
             </div>

@@ -133,7 +133,6 @@ export default function VideoHorizontal({ video , searchScreen}) {
                         textTransform: 'uppercase',
                         letterSpacing: '0.5'}}
                 >
-
                     Đăng ký
                 </button>
             </Col>)}
