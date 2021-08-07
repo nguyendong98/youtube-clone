@@ -18,6 +18,7 @@ export default function Video({ video }) {
             channelTitle,
             title,
             publishedAt,
+            liveBroadcastContent,
             thumbnails: {
                 medium
             }
@@ -95,7 +96,7 @@ export default function Video({ video }) {
         <div className="video" onClick={handleVideoClick}>
             <div className="video__top">
                 <LazyLoadImage src={medium.url} effect='blur' />
-                <span className="video__top__duration">{ _duration }</span>
+                <span className={liveBroadcastContent && liveBroadcastContent === "live" ? "d-none" : "video__top__duration"}>{ _duration }</span>
             </div>
 
             <div className="video__title">
@@ -107,9 +108,14 @@ export default function Video({ video }) {
                 <span>&nbsp;{ moment(publishedAt).fromNow() }</span>
             </div>
 
-            <div className="video__chanel">
-                <LazyLoadImage src={channelIcon?.url} effect='blur' />
-                <p>{ channelTitle }</p>
+            <div className="video__channel d-flex justify-content-between align-items-center mt-2">
+                <div className="d-flex align-items-center">
+                    <LazyLoadImage src={channelIcon?.url} effect='blur' />
+                    <p className="me-2">{ channelTitle }</p>
+                </div>
+                {
+                    liveBroadcastContent === "live" && <div className="video__channel-live flex-shrink-0">trực tiếp</div>
+                }
             </div>
         </div>
     )

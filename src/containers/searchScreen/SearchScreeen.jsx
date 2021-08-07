@@ -9,7 +9,6 @@ import Skeleton, {SkeletonTheme} from 'react-loading-skeleton';
 export default function SearchScreen() {
 
     const { query } = useParams();
-    console.log(query)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -24,7 +23,7 @@ export default function SearchScreen() {
                 searchedVideos?.map(video => (
                     <VideoHorizontal
                         video={video}
-                        key={video.id.videoId}
+                        key={Math.random()}
                         searchScreen
                     />
                 ))

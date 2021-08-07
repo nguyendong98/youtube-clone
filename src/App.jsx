@@ -5,11 +5,12 @@ import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch, useHistory } from 'react-router-dom';
 import './_app.scss';
 import {useSelector} from 'react-redux';
-import SearchScreen from 'containers/searchScreen/SearchScreeen';
+import 'moment/locale/vi';
 
 const HomeScreen = React.lazy(() => import('containers/homeScreen/HomeScreen'))
 const LoginScreen = React.lazy(() => import('containers/loginScreen/Login'));
 const WatchScreen = React.lazy(() => import('containers/watchScreen/WatchScreen'));
+const SearchScreen = React.lazy(() => import('containers/searchScreen/SearchScreeen'));
 
 
 function Layout({ children }) {
@@ -18,7 +19,7 @@ function Layout({ children }) {
     const handleToggleSidebar = () => toggleSidebar(!sidebar);
     const { accessToken, loading } = useSelector(state => state.auth);
 
-    const history = useHistory()
+    const history = useHistory();
 
     useEffect(() => {
         if (!loading && !accessToken) {

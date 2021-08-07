@@ -5,6 +5,8 @@ import {MdThumbDown, MdThumbUp} from 'react-icons/md';
 import numeral from 'numeral';
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+moment.locale('vi');
+
 
 export default function Comment({ comment }) {
     const { authorProfileImageUrl, likeCount, textDisplay, updatedAt, authorDisplayName} = comment

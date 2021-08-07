@@ -10,11 +10,12 @@ import axios from 'axios';
 import request from 'utils/api';
 import {useHistory} from 'react-router-dom';
 
-export default function VideoHorizontal({ video: {id, snippet} , searchScreen}) {
+export default function VideoHorizontal({ video , searchScreen}) {
 
-    const { publishedAt, title, thumbnails, channelTitle, channelId, description } = snippet;
+    const {id, snippet: {publishedAt, title, thumbnails, channelTitle, channelId, description}} = video;
     const history = useHistory();
 
+    const isVideo = id.kind === "youtube#video";
     const [views, setViews] = useState(null);
     const [duration, setDuration] = useState(null);
     const [channelIcon, setChannelIcon] = useState(null);
@@ -75,47 +76,67 @@ export default function VideoHorizontal({ video: {id, snippet} , searchScreen}) 
         get_channel_icon();
     }, [channelId])
 
-    const handleClick = () => history.push(`/watch/${id.videoId}`);
+    const handleClick = () => isVideo ? history.push(`/watch/${id.videoId}`) : history.push(`/channel/${id.channelId}`)
 
     return (
         <Row
-            className={searchScreen ?
-                "videoHorizontal py-1 align-items-start" :
-                "videoHorizontal py-1 align-items-center"}
+            className={`videoHorizontal py-1  ${isVideo ? 'align-items-start' : 'align-items-center border-y py-3'}`}
+
             onClick={handleClick}>
             <Col xs={6} md={searchScreen ? 4 : 6} className="videoHorizontal__left ps-lg-1 py-0">
                 <LazyLoadImage
                     src={thumbnails?.medium?.url}
                     effect='blur'
-                    className='videoHorizontal__thumbnail'
+                    className={`videoHorizontal__thumbnail ${!isVideo && 'videoHorizontal__thumbnail-channel'}`}
                     wrapperClassName='videoHorizontal__thumbnail-wrapper'
                 />
-                <span className="videoHorizontal__left-duration">{ _duration }</span>
+                {
+                    isVideo &&  <span className="videoHorizontal__left-duration">{ _duration }</span>
+                }
             </Col>
-            <Col xs={6} md={searchScreen ? 8 : 6} className="videoHorizontal__right d-flex flex-column ps-0">
-                <div className={searchScreen ? "videoHorizontal__right-title search_screen" : "videoHorizontal__right-title" }>
-                    { title }
-                </div>
+            <Col xs={6} md={searchScreen ? (isVideo ? 8 : 6) : 6} className="videoHorizontal__right d-flex flex-column ps-0">
+                { isVideo && (
+                    <div className={searchScreen ? "videoHorizontal__right-title search_screen" : "videoHorizontal__right-title" }>
+                        { title }
+                    </div>
+                )}
+
                 <div className="d-flex flex-column">
                     <div className={searchScreen ? "d-flex align-items-center order-1 mt-3" : "d-flex align-items-center order-0"}>
 
-                        {searchScreen &&  <LazyLoadImage src={channelIcon?.url} className="rounded-circle me-sm-2"></LazyLoadImage> }
-                        <div className="videoHorizontal__right-channel small">
+                        {searchScreen && isVideo && <LazyLoadImage src={channelIcon?.url} className="rounded-circle me-sm-2"></LazyLoadImage> }
+                        <div className={isVideo ? "videoHorizontal__right-channel small" : "videoHorizontal__right-channel large"}>
                             { channelTitle }
                         </div>
 
                     </div>
-
-                    <div className={searchScreen ? "videoHorizontal__right-info small order-0" : "videoHorizontal__right-info small order-1"}>
-                        <span>{ numeral(views).format("0.a") } lượt xem •</span>
-                        <span>&nbsp;{ moment(publishedAt).fromNow() }</span>
-                    </div>
+                    {
+                        isVideo && (
+                            <div className={searchScreen ? "videoHorizontal__right-info  order-0" : "videoHorizontal__right-info  order-1"}>
+                                <span>{ numeral(views).format("0.a") } lượt xem •</span>
+                                <span>&nbsp;{ moment(publishedAt).fromNow() }</span>
+                            </div>
+                        )
+                    }
                 </div>
                 {
                     searchScreen && <div className="videoHorizontal__right-description mt-2">{description}</div>
                 }
 
             </Col>
+            { !isVideo && (<Col xs={2} className="d-flex justify-content-end">
+                <button
+                    className="btn border-0 py-2 px-3"
+                    style={{backgroundColor: '#c00',
+                        color: '#ffffff',
+                        borderRadius: 0,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.5'}}
+                >
+
+                    Đăng ký
+                </button>
+            </Col>)}
         </Row>
     )
 }
