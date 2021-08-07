@@ -1,52 +1,54 @@
 import React from 'react';
 import './_sidebar.scss';
 import {
-    MdSubscriptions, MdExitToApp, MdThumbUp, MdHistory,
-    MdLibraryBooks, MdHome, MdSentimentDissatisfied
+    MdSubscriptions, MdThumbUp, MdHistory,
+    MdLibraryBooks, MdHome, MdExplore
 } from 'react-icons/md';
-import {useDispatch} from 'react-redux';
-import {logOut} from 'actions/auth.action';
+import { RiVideoLine, RiTimeFill } from 'react-icons/ri';
+import {useHistory} from 'react-router-dom';
 
 export default function Sidebar({ sidebar, toggleSidebar }) {
-
-    const dispatch = useDispatch();
-    const handleLogOut = () => dispatch(logOut());
+    const history = useHistory();
 
     return (
         <nav
             className={sidebar ? "sidebar open" : "sidebar close"}
             onClick={toggleSidebar}
         >
-            <li>
+            <li onClick={history.push('/')}>
                 <MdHome size={23} />
                 <span>Trang chủ</span>
+            </li>
+            <li >
+                <MdExplore size={23} />
+                <span>Khám phá</span>
             </li>
             <li>
                 <MdSubscriptions size={23} />
                 <span>Kênh đăng ký</span>
             </li>
+            <hr />
+
             <li>
-                <MdThumbUp size={23} />
-                <span>Video đã thích</span>
+                <MdLibraryBooks size={23} />
+                <span>Thư viện</span>
             </li>
             <li>
                 <MdHistory size={23} />
                 <span>Video đã xem</span>
             </li>
             <li>
-                <MdLibraryBooks size={23} />
-                <span>Thư viện</span>
+                <RiVideoLine size={23} />
+                <span>Video của bạn</span>
             </li>
             <li>
-                <MdSentimentDissatisfied size={23} />
-                <span>I don't know</span>
+                <RiTimeFill size={23} />
+                <span>Xem sau</span>
             </li>
-            <hr />
-            <li onClick={handleLogOut}>
-                <MdExitToApp size={23} />
-                <span>Đăng xuất</span>
+            <li>
+                <MdThumbUp size={23} />
+                <span>Video đã thích</span>
             </li>
-
             <hr />
 
         </nav>

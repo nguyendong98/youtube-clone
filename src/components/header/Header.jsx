@@ -8,6 +8,7 @@ import {LazyLoadImage} from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import {useHistory} from 'react-router-dom';
 import {CgProfile} from 'react-icons/cg';
+import { RiVideoAddFill } from 'react-icons/ri';
 import {login} from 'actions/auth.action';
 
 export default function Header({ toggleSidebar }) {
@@ -30,11 +31,14 @@ export default function Header({ toggleSidebar }) {
         <div className="border border-dark header px-4">
             <div className="header__menu">
                 <FaBars className="header__menu-fa" size={24} onClick={toggleSidebar}/>
-                <LazyLoadImage
-                    src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
-                    className="header__menu-logo"
-                />
-                <span className="header__menu-text">YouTube</span>
+                <div onClick={history.push('/')} className="d-flex align-items-center">
+                    <LazyLoadImage
+                        src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
+                        className="header__menu-logo"
+                    />
+                    <span className="header__menu-text">YouTube</span>
+                </div>
+
             </div>
 
 
@@ -46,8 +50,9 @@ export default function Header({ toggleSidebar }) {
             </form>
 
             <div className="header__icons d-flex">
-                <MdNotifications size={25} />
+                <RiVideoAddFill size={25} />
                 <MdApps size={25} className="ms-3"/>
+                <MdNotifications size={25} className="ms-3" />
                 {
                     user?.photoURL ? (
                         <LazyLoadImage
