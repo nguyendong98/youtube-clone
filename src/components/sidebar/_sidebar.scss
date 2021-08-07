@@ -1,0 +1,63 @@
+@import "src/base";
+.sidebar {
+  display: flex;
+  flex-direction: column;
+
+  width: 235px;
+  height: 90vh;
+  padding-top: 2rem;
+  transition: transform 0.2s ease-in;
+  background-color: $black-secondary;
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  z-index: 100;
+
+
+  li {
+    display: flex;
+    align-items: center;
+
+    padding: 0.6rem 1.5rem;
+    margin: 0.2rem 0;
+    cursor: pointer;
+
+    span {
+      margin-left: 1rem;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.4px;
+    }
+    &:hover {
+      background-color: $border-color;
+    }
+    hr {
+      background-color: $border-color;
+      margin: 8px 0;
+    }
+  }
+}
+
+@media (max-width: $breakpoint-medium) {
+  .sidebar {
+    width: 90px;
+    display: block;
+    li {
+      justify-content: center;
+      span {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .sidebar {
+    transform: translateX(-100%);
+    top: 0;
+    height: 100vh;
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}

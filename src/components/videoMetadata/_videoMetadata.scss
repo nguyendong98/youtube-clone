@@ -1,0 +1,62 @@
+@import "src/base";
+
+.videoMetadata {
+  &__top {
+    span {
+      margin-right: 16px;
+      cursor: pointer;
+      &:last-child {
+        margin-right: 4px;
+      }
+    }
+
+    padding-bottom: 8px;
+    border-bottom: 0.2px solid $border-color;
+    .like__bar {
+      position: relative;
+      :before {
+        content: '';
+        position: absolute;
+        bottom: -15px;
+        left: 0;
+        right: 0;
+        width: 100%;
+        background-color: $border-color;
+        height: 4px;
+
+      }
+    }
+  }
+  &__channel {
+    img {
+      width: 40px;
+      height: 40px;
+    }
+    button {
+      background-color: #c00;
+      color: #ffffff;
+      border-radius: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      &:hover, &:focus {
+        color: #ffffff;
+        outline: none;
+      }
+    }
+  }
+
+  &__description {
+    font-size: 0.9rem;
+    border-bottom: 0.2px solid $border-color;
+    padding-left: 58px;
+    white-space: pre-line;
+    .showMoreText {
+      text-decoration: none;
+      display: block;
+      margin: 1rem 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: #fff;
+    }
+  }
+}

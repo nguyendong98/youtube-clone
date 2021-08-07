@@ -1,0 +1,54 @@
+@import "src/base";
+
+.videoHorizontal {
+  cursor: pointer;
+  &__thumbnail {
+    width: 100%;
+
+    &-wrapper {
+      width: 100%;
+    }
+  }
+  &__left {
+    position: relative;
+    &-duration {
+      position: absolute;
+      bottom: 0.3rem;
+      right: 1rem;
+      background: #080808ec;
+      border-radius: 3px;
+      font-size: 14px;
+      padding: 0 2px;
+    }
+  }
+  &__right {
+    &-title {
+      margin-bottom: 0.1rem;
+      color: #fff;
+      @include line-clamp(2);
+      font-size: 14px;
+      &.search_screen {
+        font-size: 18px;
+        opacity: 0.8;
+      }
+    }
+    img {
+      width: 30px;
+      height: 30px;
+      object-fit: contain;
+    }
+    &-chanel {
+      font-size: 12px;
+      opacity: 0.7;
+    }
+    &-info {
+      font-size: 13px;
+      opacity: 0.7;
+    }
+    &-description {
+      z-index: 0.7;
+      font-size: 14px;
+      @include line-clamp(1)
+    }
+  }
+}

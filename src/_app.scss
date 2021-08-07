@@ -1,0 +1,19 @@
+@import "base";
+
+.app__container {
+  display: flex;
+  margin-top: 10vh;
+  margin-left: 235px;
+}
+
+@media (max-width: $breakpoint-medium) {
+  .app__container {
+    margin-left: 90px;
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .app__container {
+    margin-left: 0;
+  }
+}
