@@ -31,7 +31,7 @@ export default function Header({ toggleSidebar }) {
         <div className="border border-dark header px-4">
             <div className="header__menu">
                 <FaBars className="header__menu-fa" size={24} onClick={toggleSidebar}/>
-                <div onClick={history.push('/')} className="d-flex align-items-center">
+                <div onClick={() => history.push('/')} className="d-flex align-items-center">
                     <LazyLoadImage
                         src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
                         className="header__menu-logo"

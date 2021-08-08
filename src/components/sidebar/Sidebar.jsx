@@ -15,7 +15,7 @@ export default function Sidebar({ sidebar, toggleSidebar }) {
             className={sidebar ? "sidebar open" : "sidebar close"}
             onClick={toggleSidebar}
         >
-            <li onClick={history.push('/')}>
+            <li onClick={() => history.push('/')}>
                 <MdHome size={23} />
                 <span>Trang chủ</span>
             </li>
