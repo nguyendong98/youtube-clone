@@ -9,10 +9,12 @@ import 'react-lazy-load-image-component/src/effects/blur.css';
 import ShowMoreText from 'react-show-more-text';
 import {useDispatch, useSelector} from 'react-redux';
 import {getChannelDetail} from 'actions/channels.action';
+import {useTranslation} from 'react-i18next';
 
 export default function VideoMetadata({ video: {snippet, statistics} }) {
 
     const dispatch = useDispatch();
+    const { t } = useTranslation()
 
     const { title, publishedAt, channelId, channelTitle, description } = snippet;
     const { viewCount, likeCount, dislikeCount } = statistics;
@@ -28,27 +30,23 @@ export default function VideoMetadata({ video: {snippet, statistics} }) {
         <div className="videoMetadata py-2">
             <div className="videoMetadata__top">
                 <h5>{ title }</h5>
-                <div className="d-flex justify-content-between align-items-center py-1">
+                <div className="d-flex flex-column flex-md-row justify-content-start align-items-start align-items-md-center justify-content-md-between py-md-1">
                     <span>
-                        {numeral(viewCount).format('0.a')} lượt xem • &nbsp;
+                        {numeral(viewCount).format('0.a')} {t('watchScreen.views')} • &nbsp;
                         {moment(publishedAt).fromNow()}
                     </span>
-                    <div className="d-flex align-items-center">
+                    <div className="d-flex flex-row align-items-center mt-2 mt-md-0">
                         <div className="like__bar">
-                            <span>
                                 <MdThumbUp size={26} />&nbsp;
-                                    {numeral(likeCount).format('0.a')}
-                            </span>
-                            <span>
+                                 <span>{numeral(likeCount).format('0.a')}</span>
                                 <MdThumbDown size={26}/>&nbsp;
-                                    {numeral(dislikeCount).format('0.a')}
-                            </span>
+                                <span>{numeral(dislikeCount).format('0.a')}</span>
                         </div>
-                        <span className="ms-lg-2">
-                            <IoMdShareAlt size={30}/>CHIA SẺ
+                        <span className="ms-2 text-uppercase" >
+                            <IoMdShareAlt size={30}/>{t('watchScreen.share')}
                         </span>
-                        <span>
-                            <MdPlaylistAdd size={30}/>LƯU
+                        <span className="text-uppercase">
+                            <MdPlaylistAdd size={30}/>{t('watchScreen.save')}
                         </span>
                         <span>
                             <MdMoreHoriz size={26} />
@@ -60,18 +58,18 @@ export default function VideoMetadata({ video: {snippet, statistics} }) {
             <div className="videoMetadata__channel d-flex justify-content-between align-items-center my-2 py-3">
                 <div className="d-flex">
                     <LazyLoadImage className="rounded-circle" src={channel?.snippet?.thumbnails?.default?.url} effect="blur" />
-                    <div className="d-flex flex-column ms-lg-3">
+                    <div className="d-flex flex-column ms-3">
                         <span className="fw-bold">{ channelTitle }</span>
-                        <span className="small">{numeral(channel?.statistics?.subscriberCount).format('0.a')} người đăng ký</span>
+                        <span className="small">{numeral(channel?.statistics?.subscriberCount).format('0.a')} {t('watchScreen.subscribers')}</span>
                     </div>
                 </div>
-                <button className="btn border-0 py-2 px-3">Đăng ký</button>
+                <button className="btn border-0 py-2 px-3">{t('watchScreen.subscribe')}</button>
             </div>
             <div className="videoMetadata__description pb-3">
                 <ShowMoreText
                     lines={3}
-                    more="HIỂN THỊ THÊM"
-                    less="ẨN BỚT"
+                    more={t('watchScreen.showMore')}
+                    less={t('watchScreen.showLess')}
                     anchorClass="showMoreText"
                     expanded={false}
                 >

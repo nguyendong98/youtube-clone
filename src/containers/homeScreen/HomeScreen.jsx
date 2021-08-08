@@ -8,10 +8,12 @@ import {getPopularVideos} from 'actions/videos.action';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import SkeletonVideo from 'components/skeletons/SkeletonVideo';
 import {getVideosByCategory} from 'actions/videos.action';
+import {useTranslation} from 'react-i18next';
 
 export default function HomeScreen() {
 
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    const { t } = useTranslation();
     useEffect(() => {
         dispatch(getPopularVideos())
     }, [dispatch])
@@ -19,7 +21,7 @@ export default function HomeScreen() {
     const { videos, activeCategory, loading } = useSelector(state => state['homeVideos']);
 
     const fetchData = () => {
-        if (activeCategory === 'All') dispatch(getPopularVideos())
+        if (activeCategory === t('categoriesBar.all')) dispatch(getPopularVideos())
         else {
             dispatch(getVideosByCategory(activeCategory))
         }

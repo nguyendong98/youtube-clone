@@ -9,6 +9,10 @@
         margin-right: 4px;
       }
     }
+    @media (max-width: $breakpoint-small) {
+      font-size: 12px;
+      margin-top: -2px;
+    }
 
     padding-bottom: 8px;
     border-bottom: 0.2px solid $border-color;

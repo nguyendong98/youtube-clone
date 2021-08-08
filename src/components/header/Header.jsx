@@ -10,6 +10,7 @@ import {useHistory} from 'react-router-dom';
 import {CgProfile} from 'react-icons/cg';
 import { RiVideoAddFill } from 'react-icons/ri';
 import {login} from 'actions/auth.action';
+import {useTranslation} from 'react-i18next';
 
 export default function Header({ toggleSidebar }) {
 
@@ -17,6 +18,7 @@ export default function Header({ toggleSidebar }) {
     const { user } = useSelector(state => state.auth);
     const [query, setQuery] = useState('');
     const history = useHistory();
+    const { t } = useTranslation();
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -26,7 +28,6 @@ export default function Header({ toggleSidebar }) {
     const handleLogin = () => {
         dispatch(login());
     }
-
     return (
         <div className="border border-dark header px-4">
             <div className="header__menu">
@@ -41,9 +42,8 @@ export default function Header({ toggleSidebar }) {
 
             </div>
 
-
             <form onSubmit={handleSubmit}>
-                <input type="text" placeholder="Tìm kiếm" onChange={e => setQuery(e.target.value)}/>
+                <input type="text" placeholder={t('header.search')} onChange={e => setQuery(e.target.value)}/>
                 <button type="submit">
                     <AiOutlineSearch size={22} />
                 </button>
@@ -60,10 +60,13 @@ export default function Header({ toggleSidebar }) {
                             effect="blur"
                             className="img-avatar ms-3"/>
                     ) : (
-                        <button className="btn flex-shrink-0 d-flex align-items-center ms-3" onClick={handleLogin} >
-                            <CgProfile size={25} />
-                            <span className="ms-2">ĐĂNG NHẬP</span>
-                        </button>
+                        <>
+                            <button className="btn flex-shrink-0 d-flex align-items-center ms-lg-3 d-none d-md-block" onClick={handleLogin} >
+                                <CgProfile size={25} />
+                                <span className="ms-2 text-uppercase">{t('header.signIn')}</span>
+                            </button>
+                            <CgProfile onClick={handleLogin} size={30} className="d-block d-md-none"/>
+                        </>
                     )
                 }
             </div>

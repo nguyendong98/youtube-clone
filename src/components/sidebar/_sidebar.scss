@@ -21,6 +21,9 @@
     padding: 0.6rem 1.5rem;
     margin: 0.2rem 0;
     cursor: pointer;
+    @media (min-width: $breakpoint-medium) {
+      padding-right: 0.2px;
+    }
 
     span {
       margin-left: 1rem;

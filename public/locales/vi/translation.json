@@ -1,0 +1,47 @@
+{
+  "header": {
+    "search": "Tìm kiếm",
+    "signIn": "Đăng nhập"
+  },
+  "sidebar": {
+    "home": "Trang chủ",
+    "explore": "Khám phá",
+    "subscriptions": "Kênh đăng ký",
+    "library": "Thư viện",
+    "history": "Video đã xem",
+    "yourVideos": "Video của bạn",
+    "watchLater": "Xem sau",
+    "likedVideos": "Video đã thích",
+    "signOut": "Đăng xuất",
+    "language": "Ngôn ngữ: Tiếng Việt"
+  },
+  "categoriesBar": {
+    "all": "Tất cả",
+    "combineList": "Danh sách kết hợp",
+    "music": "Âm nhạc",
+    "cookingShow": "Chương trình nấu ăn",
+    "travel": "Du lịch",
+    "situationComedy": "Hài kịch tình huống",
+    "singRap": "Đọc rap",
+    "football": "Bóng đá",
+    "live": "Trực tiếp",
+    "cartoon": "Hoạt hình",
+    "pet": "Thú cưng",
+    "actionGame": "Trò chơi hành động phiêu lưu",
+    "languageOfLegend": "Liên minh huyền thoại"
+  },
+  "watchScreen": {
+    "views": "lượt xem",
+    "share": "chia sẻ",
+    "save": "lưu",
+    "subscribers": "người đăng ký",
+    "comments": "bình luận",
+    "sortBy": "sắp xếp theo",
+    "publicComment": "bình luận công khai...",
+    "subscribe": "Đăng ký",
+    "reply": "Phản hồi",
+    "cancel": "Hủy",
+    "showMore": "HIỂN THỊ THÊM",
+    "showLess": "ẨN BỚT"
+  }
+}

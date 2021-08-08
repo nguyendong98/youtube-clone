@@ -8,6 +8,7 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 export default function Video({ video }) {
 
@@ -25,6 +26,7 @@ export default function Video({ video }) {
         }
     } = video;
 
+    const { t } = useTranslation();
     const [views, setViews] = useState(null);
     const [duration, setDuration] = useState(null);
     const [channelIcon, setChannelIcon] = useState(null);
@@ -104,7 +106,7 @@ export default function Video({ video }) {
             </div>
 
             <div className="video__details">
-                <span><AiFillEye /> { numeral(views).format("0.a") } lượt xem •</span>
+                <span><AiFillEye /> { numeral(views).format("0.a") } {t('watchScreen.views')} •</span>
                 <span>&nbsp;{ moment(publishedAt).fromNow() }</span>
             </div>
 
@@ -114,7 +116,7 @@ export default function Video({ video }) {
                     <p className="me-2">{ channelTitle }</p>
                 </div>
                 {
-                    liveBroadcastContent === "live" && <div className="video__channel-live flex-shrink-0">trực tiếp</div>
+                    liveBroadcastContent === "live" && <div className="video__channel-live flex-shrink-0">{t('categoriesBar.live')}</div>
                 }
             </div>
         </div>

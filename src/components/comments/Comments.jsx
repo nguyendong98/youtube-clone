@@ -4,12 +4,16 @@ import { MdSort } from 'react-icons/md';
 import Comment from 'components/comment/Comment';
 import {useDispatch, useSelector} from 'react-redux';
 import {addComment, getCommentOfVideoById} from 'actions/comments.action';
+import {useTranslation} from 'react-i18next';
 
 export default function Comments({ videoId, video: {statistics} }) {
 
     const dispatch = useDispatch();
+    const { t } = useTranslation();
+
     const [isShowButton, setIsShowButton] = useState(false);
     const [text, setText] = useState('');
+
     const { commentCount } = statistics;
 
     useEffect(() => {
@@ -30,10 +34,10 @@ export default function Comments({ videoId, video: {statistics} }) {
         <div className="comments mt-3 pb-5">
             <div className="comments__top">
                 <div className="d-flex align-items-center">
-                    <span className="me-lg-4">{parseInt(commentCount).toLocaleString()} bình luận</span>
-                    <span>
+                    <span className="me-4">{parseInt(commentCount).toLocaleString()} {t('watchScreen.views')} </span>
+                    <span className="text-uppercase">
                         <MdSort size={26}/>&nbsp;
-                        SẮP XẾP THEO
+                        {t('watchScreen.sortBy')}
                     </span>
                 </div>
             </div>
@@ -41,18 +45,18 @@ export default function Comments({ videoId, video: {statistics} }) {
                 <img
                     src="https://st2.depositphotos.com/1104517/11967/v/950/depositphotos_119675554-stock-illustration-male-avatar-profile-picture-vector.jpg"
                     alt="img-avatar"
-                    className="rounded-circle me-lg-3"
+                    className="rounded-circle me-3"
                 />
                 <form onSubmit={handleComment} className="d-flex flex-column flex-grow-1">
                     <input
                         onFocus={() => setIsShowButton(true)}
-                        type="text" placeholder="Bình luận công khai..."
+                        type="text" placeholder={t('watchScreen.publicComment')}
                         onChange={e => setText(e.target.value)}
                     />
                     { isShowButton && (
                         <div className="d-flex justify-content-end mt-2">
-                            <button type="reset" onClick={() => setIsShowButton(false)}>Hủy</button>
-                            <button type="submit" className="ms-lg-3">Bình luận</button>
+                            <button type="reset" onClick={() => setIsShowButton(false)}>{t('watchScreen.cancel')}</button>
+                            <button type="submit" className="ms-lg-3">{t('watchScreen.comment')}</button>
                         </div> )
                     }
                 </form>

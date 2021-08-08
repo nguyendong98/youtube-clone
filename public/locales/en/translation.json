@@ -1,0 +1,47 @@
+{
+  "header": {
+    "search": "Search",
+    "signIn": "Sign in"
+  },
+  "sidebar": {
+    "home": "Home",
+    "explore": "Explore",
+    "subscriptions": "Subscriptions",
+    "library": "Library",
+    "history": "History",
+    "yourVideos": "Your videos",
+    "watchLater": "Watch later",
+    "likedVideos": "Liked videos",
+    "signOut": "Sign out",
+    "language": "Language: English"
+  },
+  "categoriesBar": {
+    "all": "All",
+    "combineList": "Combine list",
+    "music": "Music",
+    "cookingShow": "Cooking show",
+    "travel": "Travel",
+    "situationComedy": "Situation comedy",
+    "singRap": "Sing rap",
+    "football": "Football",
+    "live": "Live",
+    "cartoon": "Cartoon",
+    "pet": "Pet",
+    "actionGame": "Action game",
+    "languageOfLegend": "Language of legend"
+  },
+  "watchScreen": {
+    "views": "views",
+    "share": "share",
+    "save": "save",
+    "subscribers": "subscribers",
+    "comments": "comments",
+    "sortBy": "Sort by",
+    "publicComment": "Add a public comment...",
+    "subscribe": "Subscribe",
+    "reply": "Reply",
+    "cancel": "Cancel",
+    "showMore": "SHOW MORE",
+    "showLess": "SHOW LESS"
+  }
+}

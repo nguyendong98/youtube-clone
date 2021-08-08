@@ -9,11 +9,13 @@ import moment from 'moment';
 import axios from 'axios';
 import request from 'utils/api';
 import {useHistory} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 
 export default function VideoHorizontal({ video , searchScreen}) {
 
     const {id, snippet: {publishedAt, title, thumbnails, channelTitle, channelId, description}} = video;
     const history = useHistory();
+    const { t } = useTranslation();
 
     const isVideo = id.kind === "youtube#video";
     const [views, setViews] = useState(null);
@@ -113,7 +115,7 @@ export default function VideoHorizontal({ video , searchScreen}) {
                     {
                         isVideo && (
                             <div className={searchScreen ? "videoHorizontal__right-info  order-0" : "videoHorizontal__right-info  order-1"}>
-                                <span>{ numeral(views).format("0.a") } lượt xem •</span>
+                                <span>{ numeral(views).format("0.a") } {t('watchScreen.views')} •</span>
                                 <span>&nbsp;{ moment(publishedAt).fromNow() }</span>
                             </div>
                         )
@@ -133,7 +135,7 @@ export default function VideoHorizontal({ video , searchScreen}) {
                         textTransform: 'uppercase',
                         letterSpacing: '0.5'}}
                 >
-                    Đăng ký
+                    {t('watchScreen.subscribe')}
                 </button>
             </Col>)}
         </Row>
